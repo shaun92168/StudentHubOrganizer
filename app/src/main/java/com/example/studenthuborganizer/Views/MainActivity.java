@@ -1,10 +1,14 @@
-package com.example.studenthuborganizer;
+package com.example.studenthuborganizer.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.studenthuborganizer.Presenters.SHUBOPresenter;
+import com.example.studenthuborganizer.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,11 +18,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+    SHUBOPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        presenter = new SHUBOPresenter(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //
@@ -52,5 +58,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        presenter.OnActivityResultHandler(requestCode, resultCode, data);
     }
 }
