@@ -1,5 +1,6 @@
 package com.example.studenthuborganizer.Presenters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -27,11 +28,18 @@ public class SHUBOPresenter {
         return mActivityContext.getApplicationContext();
     }
 
+    public MainActivity GetMainActivity() {
+        return mActivityContext;
+    }
+
 
     public void StartInitial() {
         // Called by MainActivity to start any intial synchronization before any methods are called
 
         // Add any code required
+
+        // this must be called last
+        model.StartInitial();
     }
 
 
