@@ -3,14 +3,18 @@ package com.example.studenthuborganizer.Presenters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.studenthuborganizer.Models.SHUBORecord;
 import com.example.studenthuborganizer.Models.SHUBUModel;
 import com.example.studenthuborganizer.Views.MainActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SHUBOPresenter {
@@ -22,7 +26,6 @@ public class SHUBOPresenter {
         this.mActivityContext = context;
         model = new SHUBUModel(this);
     }
-
 
     public Context GetAppContext() {
         return mActivityContext.getApplicationContext();

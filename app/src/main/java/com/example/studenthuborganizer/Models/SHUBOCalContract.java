@@ -222,15 +222,15 @@ public class SHUBOCalContract {
                     null);
 
             if (cursor.moveToFirst()) {
-                long recID = cursor.getLong(1);
-                String recTitle = cursor.getString(2);
+                long recID = cursor.getLong(0);
+                String recTitle = cursor.getString(1);
                 // Description is split into "Course::Description::1|0" where 1|0 is 0=Individual & 1=Group
-                String[] attr = cursor.getString(3).split(mRegExpr, 3);
+                String[] attr = cursor.getString(2).split(mRegExpr, 3);
                 String recCourseName = attr[0];
                 String recDescription = attr[1];
-                boolean recIsGroup = (attr[2] == "1") ? true : false;
-                long recStartInMillis = cursor.getLong(4);
-                long recEndInMillis = cursor.getLong(5);
+                boolean recIsGroup = (attr[2].matches("1")) ? true : false;
+                long recStartInMillis = cursor.getLong(3);
+                long recEndInMillis = cursor.getLong(4);
 
                 // read event data
                 eventRec = new SHUBORecord(recID, recTitle, recDescription, recCourseName,
@@ -263,7 +263,7 @@ public class SHUBOCalContract {
             int totalEvents = cursor.getCount();
             cursor.moveToFirst();
             for (int i = 0; i < totalEvents; i++) {
-                eventIDs.add(cursor.getLong(1));
+                eventIDs.add(cursor.getLong(0));
                 cursor.moveToNext();
             }
 

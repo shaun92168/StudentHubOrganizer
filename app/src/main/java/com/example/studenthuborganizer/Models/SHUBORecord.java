@@ -34,7 +34,7 @@ public class SHUBORecord {
         RecordID = recID;
         Title = recTitle;
         Description = recDescription;
-        CourseName = recDescription;
+        CourseName = recCourseName;
         IsGroup = recIsGroup;
     }
     public SHUBORecord(long recID, String recTitle, String recDescription,
@@ -43,33 +43,37 @@ public class SHUBORecord {
         RecordID = recID;
         Title = recTitle;
         Description = recDescription;
-        CourseName = recDescription;
+        CourseName = recCourseName;
         IsGroup = recIsGroup;
         beginTime.setTimeInMillis(startInMillis);
         endTime.setTimeInMillis(endInMillis);
     }
 
-    public void SetStartDate(int year, int month, int data, int hourOfDay, int minute) {
-        beginTime.set(2020, 11, 18, 2, 30);
+    public void SetStartDate(int year, int month, int date, int hourOfDay, int minute) {
+        beginTime.set(year, month, date, hourOfDay, minute);
     }
     public void SetStartDate(long timeInMillis) {
         beginTime.setTimeInMillis(timeInMillis);
     }
 
-    public void SetEndDate(int year, int month, int data, int hourOfDay, int minute) {
-        endTime.set(2020, 11, 18, 2, 30);
+    public void SetEndDate(int year, int month, int date, int hourOfDay, int minute) {
+        endTime.set(year, month, date, hourOfDay, minute);
     }
     public void SetEndDate(long timeInMillis) {
         endTime.setTimeInMillis(timeInMillis);
     }
 
-    public void SetOneDayDate(int year, int month, int data, int hourOfDay, int minute) {
-        beginTime.set(0, 0, 0, 0, 0);
+    public void SetAllDayDate(int year, int month, int date) {
+        beginTime.set(year, month, date, 0, 0);
         endTime = beginTime;
     }
-    public void SetOneDayDate(long timeInMillis) {
+    public void SetAllDayDate(long timeInMillis) {
         beginTime.setTimeInMillis(timeInMillis);
+        beginTime.set(Calendar.HOUR_OF_DAY, 0);
+        beginTime.set(Calendar.MINUTE, 0);
         endTime = beginTime;
+        endTime.set(Calendar.HOUR_OF_DAY, 23);
+        endTime.set(Calendar.MINUTE, 59);
     }
 
     public long GetStartDate() {
@@ -78,5 +82,16 @@ public class SHUBORecord {
 
     public long GetEndDate() {
         return endTime.getTimeInMillis();
+    }
+
+    public String GetDateTimeFormat(boolean StartTime) {
+        Calendar oTime = (StartTime == true) ? beginTime : endTime;
+        String sDate =   oTime.get(Calendar.YEAR) + "-"
+                       + oTime.get(Calendar.MONTH)  + "-"
+                       + oTime.get(Calendar.DAY_OF_MONTH)  + " "
+                       + oTime.get(Calendar.HOUR_OF_DAY)  + ":"
+                       + oTime.get(Calendar.MINUTE);
+
+        return sDate;
     }
 }
