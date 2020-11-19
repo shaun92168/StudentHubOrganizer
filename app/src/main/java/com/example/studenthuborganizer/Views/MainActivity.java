@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_CODE = 1000;
     private static final int ADD_ACTIVITY_REQUEST_CODE = 2;
+    private static final int VIEW_PAGE_REQUEST_CODE = 3;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+        if (requestCode == VIEW_PAGE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+
+            }
+        }
         presenter.OnActivityResultHandler(requestCode, resultCode, data);
     }
 
@@ -127,5 +133,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Do any initialization of the Add Intent controls here
         startActivityForResult(intent, ADD_ACTIVITY_REQUEST_CODE);
+    }
+
+    public void viewRecords(final View view) {
+        Intent intent = new Intent(this, ViewActivity.class);
+
+        // Do any initialization of the Add Intent controls here
+        startActivityForResult(intent, VIEW_PAGE_REQUEST_CODE);
     }
 }
