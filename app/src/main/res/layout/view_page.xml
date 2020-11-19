@@ -78,52 +78,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/LinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="100dp"
-                    android:text="MM/DD"
-                    android:textColor="#636363"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/assignmentText"
-                    android:layout_width="164dp"
-                    android:layout_height="49dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="100dp"
-                    android:paddingTop="10sp"
-                    android:text="@string/assignment1"
-                    android:textAlignment="viewStart"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/courseText"
-                    android:layout_width="84dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginEnd="16dp"
-                    android:paddingTop="12sp"
-                    android:text="Course"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.chip.ChipGroup>
-
-        </LinearLayout>
+            android:orientation="vertical"/>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
