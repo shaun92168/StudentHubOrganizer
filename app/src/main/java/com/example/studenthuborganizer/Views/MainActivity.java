@@ -4,6 +4,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -14,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,13 +27,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     SHUBOPresenter presenter;
 
     public boolean mCalPermissionGranted = false;
 
     private static final int PERMISSION_CODE = 1000;
-
+    private static final int ADD_ACTIVITY_REQUEST_CODE = 2;
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         askPermission();
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        setSupportActionBar(toolbar);
 
         presenter.StartInitial();
     }
@@ -113,7 +114,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ADD_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
 
+            }
+        }
         presenter.OnActivityResultHandler(requestCode, resultCode, data);
+    }
+
+    public void addRecord(final View view) {
+        Intent intent = new Intent(this, AddActivity.class);
+
+        // Do any initialization of the Add Intent controls here
+        startActivityForResult(intent, ADD_ACTIVITY_REQUEST_CODE);
     }
 }

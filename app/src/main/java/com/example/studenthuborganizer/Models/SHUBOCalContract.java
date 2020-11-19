@@ -1,5 +1,6 @@
 package com.example.studenthuborganizer.Models;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -50,6 +51,7 @@ public class SHUBOCalContract {
     }
 
 
+    @SuppressLint("LongLogTag")
     public boolean LoadCalendar() {
         boolean result = false;
 
