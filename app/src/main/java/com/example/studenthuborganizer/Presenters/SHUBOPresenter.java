@@ -3,8 +3,10 @@ package com.example.studenthuborganizer.Presenters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.example.studenthuborganizer.Models.SHUBUModel;
 import com.example.studenthuborganizer.Views.MainActivity;
@@ -18,6 +20,7 @@ public class SHUBOPresenter {
     SHUBUModel model;
 
     // Constructor to receive the Activity context and allow association
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public SHUBOPresenter(MainActivity context) {
         this.mActivityContext = context;
         model = new SHUBUModel(this);
@@ -33,6 +36,7 @@ public class SHUBOPresenter {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void StartInitial() {
         // Called by MainActivity to start any intial synchronization before any methods are called
 
