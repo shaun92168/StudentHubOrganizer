@@ -1,5 +1,6 @@
 package com.example.studenthuborganizer.Models;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -50,6 +51,7 @@ public class SHUBOCalContract {
     }
 
 
+    @SuppressLint("LongLogTag")
     public boolean LoadCalendar() {
         boolean result = false;
 
@@ -70,6 +72,7 @@ public class SHUBOCalContract {
     }
 
 
+    @SuppressLint("LongLogTag")
     public boolean CreateCalendar() {
         boolean result = false;
 
@@ -107,6 +110,7 @@ public class SHUBOCalContract {
     }
 
 
+    @SuppressLint("LongLogTag")
     public long AddEvent(SHUBORecord EventRecord) {
         long eventID = -1;
 
@@ -144,6 +148,7 @@ public class SHUBOCalContract {
 
 
     // EventRecord must have a valid event id for this to work
+    @SuppressLint("LongLogTag")
     public boolean UpdateEvent(SHUBORecord EventRecord) {
         boolean result = false;
 
@@ -183,6 +188,7 @@ public class SHUBOCalContract {
     }
 
 
+    @SuppressLint("LongLogTag")
     public boolean DeleteEvent(long EventID) {
         boolean result = false;
 
@@ -205,6 +211,7 @@ public class SHUBOCalContract {
     }
 
 
+    @SuppressLint("LongLogTag")
     public SHUBORecord GetEvent(long EventID) {
         SHUBORecord eventRec = null;
 
@@ -246,6 +253,7 @@ public class SHUBOCalContract {
     }
 
 
+    @SuppressLint("LongLogTag")
     public ArrayList<Long> GetAllEventIDs() {
         ArrayList<Long> eventIDs = null;
 

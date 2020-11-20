@@ -9,7 +9,7 @@
     android:paddingRight="16dp">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvAssignName"
         android:layout_width="252dp"
         android:layout_height="37dp"
         android:layout_marginTop="39dp"
@@ -17,13 +17,13 @@
         android:text="Assignment Name"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etTaskName"
         android:layout_width="232dp"
         android:layout_height="43dp"
         android:layout_marginTop="40dp"
@@ -38,14 +38,14 @@
         app:layout_constraintVertical_bias="0.050000012" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView"
         android:layout_width="408dp"
         android:layout_height="0dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/tvAssignName">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="77dp"
                 android:layout_weight="1"
@@ -61,14 +61,19 @@
                 android:gravity="start|top"
                 android:hint="Enter Description"
                 android:inputType="textMultiLine"
+                android:layout_marginBottom="12dp"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
                 android:layout_width="match_parent"
+                app:singleSelection="true"
+                android:checkedButton="@+id/rdGroup"
+                android:orientation="horizontal"
                 android:layout_height="54dp">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/rdIndividual"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="70dp"
@@ -77,45 +82,63 @@
                     android:textSize="18sp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rdGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Group"
+
                     android:textSize="18sp" />
 
             </com.google.android.material.chip.ChipGroup>
 
+            <TextView
+                android:id="@+id/tvCourseName"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="Course Name"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/scrollView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/etCourseName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="COMP 7901"
                 android:inputType="textPersonName"
-                android:text="Course Name "
                 android:textAlignment="center" />
 
-            <CalendarView
-                android:id="@+id/calendarView"
+            <DatePicker
+                android:id="@+id/date_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="0.686" />
 
-            <EditText
-                android:id="@+id/editTextTime"
+            <TimePicker
+                android:id="@+id/time_picker"
+                android:layout_weight="4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="time" />
+                android:layout_height="390dp"
+                android:descendantFocusability="blocksDescendants">
+                <requestFocus />
+            </TimePicker>
 
             <Button
-                android:id="@+id/button_first"
+                android:id="@+id/btSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:onClick="addToViewPage"
                 android:text="Save"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
