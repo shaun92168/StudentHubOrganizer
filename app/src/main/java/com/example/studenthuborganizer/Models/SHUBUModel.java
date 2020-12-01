@@ -50,6 +50,7 @@ public class SHUBUModel {
         // Add any code required
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public long AddRecord(SHUBORecord EventRecord) {
         long recId = mCalContract.AddEvent(EventRecord);
 
@@ -63,6 +64,7 @@ public class SHUBUModel {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean UpdateRecord(SHUBORecord EventRecord) {
         boolean result = mCalContract.UpdateEvent(EventRecord);
 
@@ -76,6 +78,7 @@ public class SHUBUModel {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean DeleteRecord(long EventID) {
         boolean result = mCalContract.DeleteEvent(EventID);
 
@@ -88,6 +91,7 @@ public class SHUBUModel {
         return result;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public SHUBORecord GetRecord(long RecordID) {
         SHUBORecord Rec = mCalContract.GetEvent(RecordID);
 
@@ -100,6 +104,7 @@ public class SHUBUModel {
         return Rec;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public ArrayList<Long> GetRecordIDs() {
         ArrayList<Long> EventIDs = mCalContract.GetAllEventIDs();
 

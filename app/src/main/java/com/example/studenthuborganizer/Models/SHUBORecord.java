@@ -1,5 +1,9 @@
 package com.example.studenthuborganizer.Models;
 
+import android.content.Context;
+
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 // Use to transfer or read data between the Model layer and presentation and view.
@@ -22,7 +26,8 @@ public class SHUBORecord {
     private Calendar beginTime = Calendar.getInstance();
     private Calendar endTime = Calendar.getInstance();
 
-    public SHUBORecord(){
+    public SHUBORecord() {
+        RecordID = -1;
         Title = "New Event";
         Description = "";
         CourseName = "";
@@ -84,14 +89,44 @@ public class SHUBORecord {
         return endTime.getTimeInMillis();
     }
 
-    public String GetDateTimeFormat(boolean StartTime) {
-        Calendar oTime = (StartTime == true) ? beginTime : endTime;
-        String sDate =   oTime.get(Calendar.YEAR) + "-"
-                       + oTime.get(Calendar.MONTH)  + "-"
-                       + oTime.get(Calendar.DAY_OF_MONTH)  + " "
-                       + oTime.get(Calendar.HOUR_OF_DAY)  + ":"
-                       + oTime.get(Calendar.MINUTE);
+    public String GetDateLocal(boolean StartDate, Context context) {
+        Calendar oTime = (StartDate == true) ? beginTime : endTime;
+        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+        return dateFormat.format(oTime.getTime());
+    }
 
-        return sDate;
+    public String GetTimeLocal(boolean StartTime, Context context) {
+        Calendar oTime = (StartTime == true) ? beginTime : endTime;
+        DateFormat dateFormat = android.text.format.DateFormat.getTimeFormat(context);
+        return dateFormat.format(oTime.getTime());
+    }
+
+    public String GetDateTimeFormat(boolean StartTime, Context context) {
+        return GetDateLocal(StartTime, context) + " " + GetTimeLocal(StartTime, context);
+    }
+
+    public int GetDateYear(boolean StartTime) {
+        Calendar oTime = (StartTime == true) ? beginTime : endTime;
+        return oTime.get(Calendar.YEAR);
+    }
+
+    public int GetDateMonth(boolean StartTime) {
+        Calendar oTime = (StartTime == true) ? beginTime : endTime;
+        return oTime.get(Calendar.MONTH);
+    }
+
+    public int GetDateDay(boolean StartTime) {
+        Calendar oTime = (StartTime == true) ? beginTime : endTime;
+        return oTime.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public int GetTimeHour24(boolean StartTime) {
+        Calendar oTime = (StartTime == true) ? beginTime : endTime;
+        return oTime.get(Calendar.HOUR_OF_DAY);
+    }
+
+    public int GetTimeMinute(boolean StartTime) {
+        Calendar oTime = (StartTime == true) ? beginTime : endTime;
+        return oTime.get(Calendar.MINUTE);
     }
 }

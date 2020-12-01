@@ -4,6 +4,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -14,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,33 +27,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    SHUBOPresenter presenter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+public class MainActivity extends AppCompatActivity {
+    private static final int PERMISSION_CODE = 1000;
+    public static SHUBOPresenter mPresenter;
     public boolean mCalPermissionGranted = false;
 
-    private static final int PERMISSION_CODE = 1000;
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new SHUBOPresenter(this);
+        mPresenter = new SHUBOPresenter(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         askPermission();
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        setSupportActionBar(toolbar);
 
-        presenter.StartInitial();
+        mPresenter.StartInitial();
+    }
+
+    public SHUBOPresenter GetmPresenter() {
+        return mPresenter;
     }
 
     @Override
@@ -113,7 +116,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        mPresenter.OnActivityResultHandler(requestCode, resultCode, data);
+    }
 
-        presenter.OnActivityResultHandler(requestCode, resultCode, data);
+    public void addRecord(final View view) {
+        Intent intent = new Intent(this, AddActivity.class);
+
+        // Do any initialization of the Add Intent controls here
+        startActivityForResult(intent, mPresenter.ADD_ACTIVITY_REQUEST_CODE);
+    }
+
+    public void viewRecords(final View view) {
+        Intent intent = new Intent(this, ViewActivity.class);
+
+        // Do any initialization of the Add Intent controls here
+        startActivityForResult(intent, mPresenter.VIEW_PAGE_REQUEST_CODE);
     }
 }
