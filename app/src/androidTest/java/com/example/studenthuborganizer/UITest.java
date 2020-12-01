@@ -89,13 +89,13 @@ public class UITest {
 
         // Delete Assignment 1
         onView(withText("Assignment 1")).check(matches(isDisplayed()));
-        onView(withText("11/30")).perform(click());
+        onView(withText("11/30/20")).perform(click());
         onView(withId(R.id.add_button)).perform(click());
         onView(withText("Assignment 1")).check(doesNotExist());
 
         // Delete Assignment 2
         onView(withText("Assignment 2")).check(matches(isDisplayed()));
-        onView(withText("12/1")).perform(click());
+        onView(withText("12/1/20")).perform(click());
         onView(withId(R.id.add_button)).perform(click());
         onView(withText("Assignment 2")).check(doesNotExist());
     }
