@@ -134,7 +134,7 @@ public class SHUBOCalContract {
             // Retrieve ID for new event
             String newID = uri.getLastPathSegment();
             if (newID != null) {
-                eventID = new Long(newID);
+                eventID = Long.valueOf(newID);
                 Log.d(TAG_AddEvent, "Success adding record title: " + EventRecord.Title);
             } else {
                 Log.d(TAG_AddEvent, "Failed to add record title: " + EventRecord.Title);
@@ -222,7 +222,7 @@ public class SHUBOCalContract {
                     CalendarContract.Events.DTSTART,
                     CalendarContract.Events.DTEND};
 
-            Cursor cursor = mCr.query(CalendarContract.Events.CONTENT_URI,
+            @SuppressLint("Recycle") Cursor cursor = mCr.query(CalendarContract.Events.CONTENT_URI,
                     proj,
                     CalendarContract.Events._ID + " = ? ",
                     new String[]{Long.toString(EventID)},
@@ -262,7 +262,7 @@ public class SHUBOCalContract {
 
             String[] proj = new String[]{CalendarContract.Events._ID};
 
-            Cursor cursor = mCr.query(CalendarContract.Events.CONTENT_URI,
+            @SuppressLint("Recycle") Cursor cursor = mCr.query(CalendarContract.Events.CONTENT_URI,
                     proj,
                     null,
                     null,
@@ -296,7 +296,7 @@ public class SHUBOCalContract {
         // use the same values as above:
         String[] selArgs = new String[]{SHUBO_ACCOUNT_NAME,
                 CalendarContract.ACCOUNT_TYPE_LOCAL};
-        Cursor cursor = mCr.query(CalendarContract.Calendars.CONTENT_URI,
+        @SuppressLint("Recycle") Cursor cursor = mCr.query(CalendarContract.Calendars.CONTENT_URI,
                 projection,
                 selection,
                 selArgs,

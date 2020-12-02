@@ -34,6 +34,7 @@ public class AddActivity extends AppCompatActivity {
 
     private SHUBOPresenter mPresenter;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class AddActivity extends AppCompatActivity {
         finish();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void addToViewPage(final View v) {
         Intent i = new Intent(this, ViewActivity.class);
         i.putExtra("RecID", (Long)saveBtn.getTag());
@@ -81,6 +83,7 @@ public class AddActivity extends AppCompatActivity {
         finish();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void SetupForEdit(Long RecIDTooUseForEdit) {
         SHUBORecord RecToUseForEdit = mPresenter.GetRecord(RecIDTooUseForEdit);
         saveBtn.setText("Update");
