@@ -19,7 +19,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.StudentHubOrganizer">
+        android:theme="@style/Theme.StudentHubOrganizer"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".Views.AddActivity"></activity>
         <activity android:name=".Views.ViewActivity"></activity>
         <activity

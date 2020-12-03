@@ -3,14 +3,12 @@ package com.example.studenthuborganizer.Presenters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.studenthuborganizer.Models.SHUBORecord;
-import com.example.studenthuborganizer.Models.SHUBUModel;
+import com.example.studenthuborganizer.Models.SHUBOModel;
 import com.example.studenthuborganizer.Views.AddActivity;
 import com.example.studenthuborganizer.Views.MainActivity;
 import com.example.studenthuborganizer.Views.ViewActivity;
@@ -28,14 +26,14 @@ public class SHUBOPresenter {
     MainActivity mMainActivity = null;
     AddActivity mAddActivity = null;
     ViewActivity mViewActivity = null;
-    SHUBUModel model;
+    SHUBOModel model;
     Long CachedRecForEdit = -1L;
 
     // Constructor to receive the Activity context and allow association
     @RequiresApi(api = Build.VERSION_CODES.N)
     public SHUBOPresenter(MainActivity context) {
         this.mMainActivity = context;
-        model = new SHUBUModel(this);
+        model = new SHUBOModel(this);
     }
 
     public void SetAddActivity(AddActivity newActivity) {
@@ -72,6 +70,7 @@ public class SHUBOPresenter {
         return CachedRecForEdit;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void OnActivityResultHandler(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == ADD_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -115,22 +114,27 @@ public class SHUBOPresenter {
     //
     // Interface Wrappers to get at raw model data
     //
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public long AddRecord(SHUBORecord EventRecord) {
         return model.AddRecord(EventRecord);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean UpdateRecord(SHUBORecord EventRecord) {
         return model.UpdateRecord(EventRecord);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean DeleteRecord(long EventID) {
         return model.DeleteRecord(EventID);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public SHUBORecord GetRecord(long RecordID) {
         return model.GetRecord(RecordID);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public ArrayList<Long> GetRecordIDs() {
         return model.GetRecordIDs();
     }

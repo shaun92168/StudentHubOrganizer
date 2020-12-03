@@ -7,7 +7,7 @@ import com.example.studenthuborganizer.Presenters.SHUBOPresenter;
 
 import java.util.ArrayList;
 
-public class SHUBUModel {
+public class SHUBOModel {
     SHUBOPresenter mPresenterContext;
     SHUBOCalContract mCalContract;
     boolean mIsCalendarLoaded = false;
@@ -23,7 +23,7 @@ public class SHUBUModel {
 
     // Constructor to receive the Activity context and allow association
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public SHUBUModel(SHUBOPresenter context) {
+    public SHUBOModel(SHUBOPresenter context) {
         this.mPresenterContext = context;
         mCalContract = new SHUBOCalContract(context);
     }
