@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -16,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Console;
@@ -51,6 +53,7 @@ public class ViewActivity extends AppCompatActivity {
     public Boolean isGroup;
     private SHUBOPresenter mPresenter;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +69,13 @@ public class ViewActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mPresenter.OnActivityResultHandler(requestCode, resultCode, data);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void createTask(Long ARecID) {
         CheckBox cBox = new CheckBox(this);
         TextView assignmentName = new TextView(this);
@@ -136,6 +141,7 @@ public class ViewActivity extends AppCompatActivity {
         //ViewActivity.this.startActivity(myIntent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void deleteRecords(final View v) {
         List<Integer> recordsToRemove = new ArrayList<>();
         LinearLayout ll = (LinearLayout)findViewById(R.id.LinearLayout);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
+    android:paddingStart="16dp"
     android:paddingRight="16dp">
 
     <TextView
@@ -62,7 +62,8 @@
                 android:hint="Enter Description"
                 android:inputType="textMultiLine"
                 android:layout_marginBottom="12dp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                tools:ignore="RtlCompat" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
@@ -118,11 +119,12 @@
                 android:id="@+id/date_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="25dp"
+                android:paddingStart="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.686" />
+                app:layout_constraintVertical_bias="0.686"
+                tools:ignore="RtlSymmetry" />
 
             <TimePicker
                 android:id="@+id/time_picker"

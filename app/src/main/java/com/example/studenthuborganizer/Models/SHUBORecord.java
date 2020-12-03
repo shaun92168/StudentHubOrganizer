@@ -129,4 +129,16 @@ public class SHUBORecord {
         Calendar oTime = (StartTime == true) ? beginTime : endTime;
         return oTime.get(Calendar.MINUTE);
     }
+
+    public String GetTitle() {
+        return this.Title;
+    }
+
+    public String GetDescription() {
+        return this.Description;
+    }
+
+    public String GetCourseName() {
+        return this.CourseName;
+    }
 }

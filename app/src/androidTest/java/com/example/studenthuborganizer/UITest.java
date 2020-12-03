@@ -45,7 +45,7 @@ public class UITest {
 //    }
 
     @Test
-    public void testAddAssignment() {
+    public void testAddandDeleteAssignment() {
         onView(withId(R.id.addRecord2)).perform(click());
         onView(withText("Sort By")).check(matches(isDisplayed()));
         onView(withId(R.id.floatingActionButton)).perform(click());
@@ -86,17 +86,49 @@ public class UITest {
         // Back to View Screen
         onView(withText("Sort By")).check(matches(isDisplayed()));
         onView(withText("Assignment 2")).check(matches(isDisplayed()));
+        onView(withId(R.id.floatingActionButton)).perform(click());
+        onView(withText("Assignment Name")).check(matches(isDisplayed()));
 
-        // Delete Assignment 1
+        // Add Assignment 3
+        onView(withId(R.id.etTaskName)).perform(clearText());
+        onView(withId(R.id.etTaskName)).perform(typeText("Assignment 3"), closeSoftKeyboard());
+        onView(withId(R.id.etDescription)).perform(clearText());
+        onView(withId(R.id.etDescription)).perform(typeText("Assignment 3 Description"), closeSoftKeyboard());
+        onView(withId(R.id.rdIndividual)).perform(click());
+        onView(withId(R.id.etCourseName)).perform(clearText());
+        onView(withId(R.id.etCourseName)).perform(typeText("COMP7082"), closeSoftKeyboard());
+        onView(withId(R.id.date_picker)).perform(PickerActions.setDate(2020, 12, 3));
+        onView(withId(R.id.time_picker)).perform(scrollTo(), PickerActions.setTime(23,59));
+        onView(withId(R.id.scrollView)).perform(swipeUp());
+        onView(withId(R.id.btSave)).perform(scrollTo(), click());
+
+        // Back to View Screen
+        onView(withText("Sort By")).check(matches(isDisplayed()));
+
+        // Ensure all assignments are seen
+        onView(withText("Assignment 1")).check(matches(isDisplayed()));
+        onView(withText("Assignment 2")).check(matches(isDisplayed()));
+        onView(withText("Assignment 3")).check(matches(isDisplayed()));
+
+        // Check Assignment 1
         onView(withText("Assignment 1")).check(matches(isDisplayed()));
         onView(withText("11/30/20")).perform(click());
-        onView(withId(R.id.add_button)).perform(click());
-        onView(withText("Assignment 1")).check(doesNotExist());
 
-        // Delete Assignment 2
+        // Check Assignment 2
         onView(withText("Assignment 2")).check(matches(isDisplayed()));
         onView(withText("12/1/20")).perform(click());
+
+        // Delete Assignment 1 and 2
         onView(withId(R.id.add_button)).perform(click());
+        onView(withText("Assignment 1")).check(doesNotExist());
         onView(withText("Assignment 2")).check(doesNotExist());
+
+        // Check Assignment 1
+        onView(withText("Assignment 3")).check(matches(isDisplayed()));
+        onView(withText("12/3/20")).perform(click());
+
+        // Delete Assignment 3
+        onView(withId(R.id.add_button)).perform(click());
+        onView(withText("Assignment 3")).check(doesNotExist());
     }
 }

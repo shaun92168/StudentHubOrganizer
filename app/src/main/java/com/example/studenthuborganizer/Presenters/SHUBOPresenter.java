@@ -70,6 +70,7 @@ public class SHUBOPresenter {
         return CachedRecForEdit;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void OnActivityResultHandler(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == ADD_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -113,22 +114,27 @@ public class SHUBOPresenter {
     //
     // Interface Wrappers to get at raw model data
     //
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public long AddRecord(SHUBORecord EventRecord) {
         return model.AddRecord(EventRecord);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean UpdateRecord(SHUBORecord EventRecord) {
         return model.UpdateRecord(EventRecord);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean DeleteRecord(long EventID) {
         return model.DeleteRecord(EventID);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public SHUBORecord GetRecord(long RecordID) {
         return model.GetRecord(RecordID);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public ArrayList<Long> GetRecordIDs() {
         return model.GetRecordIDs();
     }
