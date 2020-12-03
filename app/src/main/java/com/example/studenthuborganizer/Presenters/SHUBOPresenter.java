@@ -3,14 +3,12 @@ package com.example.studenthuborganizer.Presenters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.studenthuborganizer.Models.SHUBORecord;
-import com.example.studenthuborganizer.Models.SHUBUModel;
+import com.example.studenthuborganizer.Models.SHUBOModel;
 import com.example.studenthuborganizer.Views.AddActivity;
 import com.example.studenthuborganizer.Views.MainActivity;
 import com.example.studenthuborganizer.Views.ViewActivity;
@@ -28,14 +26,14 @@ public class SHUBOPresenter {
     MainActivity mMainActivity = null;
     AddActivity mAddActivity = null;
     ViewActivity mViewActivity = null;
-    SHUBUModel model;
+    SHUBOModel model;
     Long CachedRecForEdit = -1L;
 
     // Constructor to receive the Activity context and allow association
     @RequiresApi(api = Build.VERSION_CODES.N)
     public SHUBOPresenter(MainActivity context) {
         this.mMainActivity = context;
-        model = new SHUBUModel(this);
+        model = new SHUBOModel(this);
     }
 
     public void SetAddActivity(AddActivity newActivity) {
